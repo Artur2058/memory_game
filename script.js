@@ -1,4 +1,19 @@
 let button1=document.getElementById("button1");
+let players=document.getElementById("players");
+let player1=document.getElementById("player1");
+let player2=document.getElementById("player2");
+let game_score=document.getElementById("game_score");
+let game_score1=document.getElementById("game_score1");
+let game_score2=document.getElementById("game_score2");
+let game_score1_number=0;
+let game_score2_number=0;
+game_score1.textContent=game_score1_number;
+game_score2.textContent=game_score2_number;
+players.textContent="PLAYER 1";
+players.style.fontSize="130px";
+player1.textContent="Player 1";
+player2.textContent="Player 2";
+game_score.style.fontSize="50px";
 let container=[];
 for(let i=1; i<=3; i++){
     container[i]=document.createElement("div");
@@ -44,7 +59,16 @@ function fun(){
     if(q3===2){
       setTimeout(() => {
         if(arr[0].classList[1]===arr[1].classList[1]){
-           
+            if(players.textContent==="PLAYER 1"){
+                players.textContent="PLAYER 1";
+                game_score1_number++;
+                game_score1.textContent=game_score1_number;
+            }
+            else{
+                players.textContent="PLAYER 2";
+                game_score2_number++;
+                game_score2.textContent=game_score2_number;
+            }
             brr.unshift(arr[0]);
             brr.unshift(arr[1]);  
             q3=0;
@@ -61,11 +85,23 @@ function fun(){
                
             }
             if(q4===6){
-                alert("WIN, Please Click on RESTART");
+                if(game_score1_number>game_score2_number){
+                    alert("WIN PLAYER 1 Please Click on RESTART");
+                }
+                else{
+                    alert("WIN PLAYER 2 Please Click on RESTART");
+                }
+                
             }
             q4++;
         }
         else{  
+            if(players.textContent==="PLAYER 1"){
+                players.textContent="PLAYER 2";
+            }
+            else{
+                players.textContent="PLAYER 1";
+            }
         for(let i=1; i<=12; i++){
             if(div[i]){
                 div[i].style.zIndex=1;
@@ -110,5 +146,9 @@ function fun2(){
         }
         document.getElementById("container"+q5).appendChild(img[i]);
    }
+   game_score1_number=0;
+   game_score2_number=0;
+   game_score1.textContent=0;
+   game_score2.textContent=0;
 }
 
